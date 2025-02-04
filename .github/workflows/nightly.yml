@@ -14,12 +14,16 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12
-    - name: install
-      run: npm install
-    - name: build
-      run: npm build
-    - name: test
-      run: npm test
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8
+    - name: Install dependencies
+      run: pnpm install
+    - name: Build
+      run: pnpm build
+    - name: Test
+      run: pnpm test
       env:
         CI: true
         BEXIO_CLIENTID: ${{ secrets.BEXIO_CLIENTID }}
@@ -28,7 +32,7 @@ jobs:
         BEXIO_PASSWORD: ${{ secrets.BEXIO_PASSWORD }}
         BEXIO_USERNAME: ${{ secrets.BEXIO_USERNAME }}
         HOSTNAME: "127.0.0.1"
-    - name: upload coverage
-      run: npm run report
+    - name: Upload coverage
+      run: pnpm run report
       env: 
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

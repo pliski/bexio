@@ -1,6 +1,0 @@
-src
-tsconfig.json
-yarn.lock
-.vscode/
-lib/test.js
-lib/test.d.ts
